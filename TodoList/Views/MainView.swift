@@ -24,10 +24,15 @@ struct MainView: View {
                 .tabItem {
                     Label("Home",systemImage: "house")
             }
+            PeopleView()
+                .tabItem {
+                    Label("Peoples",systemImage: "person")
+            }
             ProfileView()
                 .tabItem {
                     Label("profile",systemImage: "person.circle")
             }
+            
         }
     }
 }

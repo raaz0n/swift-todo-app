@@ -8,9 +8,9 @@
 import Foundation
 
 
-struct Course: Hashable, Codable{
+struct People: Hashable, Codable{
     let id: Int
     let name: String
     let username: String
-    let email: TimeInterval
+    let email: String
 }
