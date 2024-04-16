@@ -9,10 +9,23 @@ import SwiftUI
 
 struct  PeopleView: View {
     @StateObject var viewModel = PeopleViewModel()
+    @State private var searchTerm: String = ""
+    
+    var filterPeople: [People] {
+        guard !searchTerm.isEmpty else{
+            return viewModel.peoples
+        }
+        return viewModel.peoples.filter{
+            $0.name.localizedCaseInsensitiveContains(searchTerm)
+        }
+    }
+    
+    
+    
     var body: some View {
-        NavigationView{
+        NavigationStack{
             List{
-                ForEach(viewModel.peoples,id:\.self){people in
+                ForEach(filterPeople,id:\.self){people in
                     
                     HStack{
                         NetworkImageView(urlString: "https://cdn.icon-icons.com/icons2/2643/PNG/512/female_woman_person_people_avatar_icon_159367.png")
@@ -31,7 +44,7 @@ struct  PeopleView: View {
             .task {
                            await viewModel.fetch()
                        }
-            
+            .searchable(text: $searchTerm, prompt: "Search peoples")
             
         }
         

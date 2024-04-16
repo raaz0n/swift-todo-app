@@ -8,12 +8,14 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import _PhotosUI_SwiftUI
 
 
 class ProfileViewModel: ObservableObject {
     init(){}
     
     @Published var user: User? = nil
+
     
     
     func fetchUser(){
